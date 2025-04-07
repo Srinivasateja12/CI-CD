@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class StartApplication {
 
     @GetMapping("/")
-    public String index(@RequestParam(required = false) double num1, @RequestParam(required = false) double num2, @RequestParam(required = false) String operator, Model model) {
+    public String index(@RequestParam(required = false) Double num1, @RequestParam(required = false) Double num2, @RequestParam(required = false) String operator, Model model) {
         model.addAttribute("title", "I have successfuly built a sprint boot application using Maven");
         model.addAttribute("msg", "This application is deployed on to Kubernetes using Azure DevOps");
+        
+        if (num1 != null && num2 != null && operator != null) {
         double result = 0;
         switch (operator) {
             case "add": result = num1 + num2; break;
@@ -22,7 +24,8 @@ public class StartApplication {
             case "multiply": result = num1 * num2; break;
             case "divide": result = (num2 != 0) ? num1 / num2 : 0; break;
         }
-        model.addAttribute("result", result);   
+        model.addAttribute("result", result); 
+        }  
         return "index";
     }
 
