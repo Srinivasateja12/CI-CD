@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class StartApplication {
 
     @GetMapping("/")
-    public String index(@RequestParam double num1, @RequestParam double num2, @RequestParam String operator, Model model) {
+    public String index(@RequestParam(required = false) double num1, @RequestParam(required = false) double num2, @RequestParam(required = false) String operator, Model model) {
         model.addAttribute("title", "I have successfuly built a sprint boot application using Maven");
         model.addAttribute("msg", "This application is deployed on to Kubernetes using Azure DevOps");
         double result = 0;
